@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'linux' }
+  agent { label 'any' }
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -14,7 +14,7 @@ pipeline {
       }
     }
     stage('Upload to Artifactory') {
-      agent {
+      agent { label 'any' } {
         docker {
           image 'releases-docker.jfrog.io/jfrog/jfrog-cli-v2:2.2.0' 
           reuseNode true
